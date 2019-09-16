@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.loan.dao.LoanElectricInfoDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.loan.pojo.LoanElectricInfo" id="loanElectricInfoResultMap">
+                <result property="loanId" column="loan_id"/>
+              <result property="electricCore" column="electric_core"/>
+              <result property="phone" column="phone"/>
+              <result property="isConnect" column="is_connect"/>
+              <result property="isKnowLoan" column="is_know_loan"/>
+              <result property="loanRelation" column="loan_relation"/>
+              <result property="electricRecord" column="electric_record"/>
+              <result property="createTime" column="create_time"/>
+              <result property="remark" column="remark"/>
+          </resultMap>
+    
+  <sql id="Base_Column_List">
+                  `loan_id`, 
+                            `electric_core`, 
+                            `phone`, 
+                            `is_connect`, 
+                            `is_know_loan`, 
+                            `loan_relation`, 
+                            `electric_record`, 
+                            `create_time`, 
+                            `remark`          </sql>
+ 
+  <select id="query" resultMap="loanElectricInfoResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from  loan_electric_info
+  </select>
+  
+	 
+	<insert id="insert" parameterType="com.yb.loan.pojo.LoanElectricInfo">
+		insert into loan_electric_info
+		(
+			`loan_id`, 
+			`electric_core`, 
+			`phone`, 
+			`is_connect`, 
+			`is_know_loan`, 
+			`loan_relation`, 
+			`electric_record`, 
+			`create_time`, 
+			`remark`
+		)
+		values
+		(
+			#{loanId}, 
+			#{electricCore}, 
+			#{phone}, 
+			#{isConnect}, 
+			#{isKnowLoan}, 
+			#{loanRelation}, 
+			#{electricRecord}, 
+			#{createTime}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.yb.loan.pojo.LoanElectricInfo">
+		update loan_electric_info 
+		<set>
+			<if test="electricCore != null">`electric_core` = #{electricCore}, </if>
+			<if test="phone != null">`phone` = #{phone}, </if>
+			<if test="isConnect != null">`is_connect` = #{isConnect}, </if>
+			<if test="isKnowLoan != null">`is_know_loan` = #{isKnowLoan}, </if>
+			<if test="loanRelation != null">`loan_relation` = #{loanRelation}, </if>
+			<if test="electricRecord != null">`electric_record` = #{electricRecord}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where loan_id = #{loanId}
+	</update>
+
+</mapper>

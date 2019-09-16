@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.user.dao.RoleDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.user.pojo.Role" id="roleResultMap">
+                <result property="id" column="id"/>
+              <result property="roleName" column="role_name"/>
+          </resultMap>
+    
+  <sql id="Base_Column_List">
+                  `id`, 
+                            `role_name`          </sql>
+
+  <select id="listPageRole" resultMap="roleResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from  sys_role where 1=1
+	  <if test="role.roleName != null">
+		   and role_name like concat('%',#{role.roleName},'%')
+	  </if>
+  </select>
+
+	<select id="listRole" resultMap="roleResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from  sys_role
+	</select>
+
+	<select id="queryRoleByName" resultType="com.yb.user.pojo.Role">
+		select  <include refid="Base_Column_List" /> from  sys_role where role_name = #{roleName}
+	</select>
+	 
+	<insert id="insertRole" parameterType="com.yb.user.pojo.Role" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_role
+		(
+			`role_name`
+		)
+		values
+		(
+			#{roleName}
+		)
+	</insert>
+
+	<delete id="deleteRole">
+		delete from sys_role where id = #{id}
+	</delete>
+	 
+	<update id="update" parameterType="com.yb.user.pojo.Role">
+		update sys_role 
+		<set>
+			<if test="roleName != null">`role_name` = #{roleName}</if>
+		</set>
+		where id = #{id}
+	</update>
+
+</mapper>

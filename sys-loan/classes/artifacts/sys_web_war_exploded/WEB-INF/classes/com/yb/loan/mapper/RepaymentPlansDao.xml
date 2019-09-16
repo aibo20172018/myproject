@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.loan.dao.RepaymentPlansDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.loan.pojo.RepaymentPlans" id="repaymentPlansResultMap">
+                <result property="repaymentSq" column="repayment_sq"/>
+              <result property="loanId" column="loan_id"/>
+              <result property="loanNo" column="loan_no"/>
+              <result property="contractNo" column="contract_no"/>
+              <result property="productType" column="product_type"/>
+              <result property="repayUserid" column="repay_userid"/>
+              <result property="planNo" column="plan_no"/>
+              <result property="repayTime" column="repay_time"/>
+              <result property="repayHolidaytime" column="repay_holidaytime"/>
+              <result property="repayTotalmoney" column="repay_totalmoney"/>
+              <result property="repayMoney" column="repay_money"/>
+              <result property="repayInterest" column="repay_interest"/>
+              <result property="repayIntermediaryfee" column="repay_intermediaryfee"/>
+              <result property="repayAdvancePenaltyfee" column="repay_advance_penaltyfee"/>
+              <result property="remainPrincipal" column="remain_principal"/>
+              <result property="remainMoneyinterest" column="remain_moneyinterest"/>
+              <result property="advanceMoney" column="advance_money"/>
+              <result property="realRepayTime" column="real_repay_time"/>
+              <result property="realMoeny" column="real_moeny"/>
+              <result property="realInterest" column="real_interest"/>
+              <result property="realIntermediaryfee" column="real_intermediaryfee"/>
+              <result property="realAdvancePenaltyfee" column="real_advance_penaltyfee"/>
+              <result property="overdueDay" column="overdue_day"/>
+              <result property="overdueMoney" column="overdue_money"/>
+              <result property="isAdvance" column="is_advance"/>
+              <result property="status" column="status"/>
+              <result property="loopTime" column="loop_time"/>
+              <result property="createdTime" column="created_time"/>
+              <result property="remark" column="remark"/>
+          </resultMap>
+    
+  <sql id="Base_Column_List">
+                  `repayment_sq`, 
+                            `loan_id`, 
+                            `loan_no`, 
+                            `contract_no`, 
+                            `product_type`, 
+                            `repay_userid`, 
+                            `plan_no`, 
+                            `repay_time`, 
+                            `repay_holidaytime`, 
+                            `repay_totalmoney`, 
+                            `repay_money`, 
+                            `repay_interest`, 
+                            `repay_intermediaryfee`, 
+                            `repay_advance_penaltyfee`, 
+                            `remain_principal`, 
+                            `remain_moneyinterest`, 
+                            `advance_money`, 
+                            `real_repay_time`, 
+                            `real_moeny`, 
+                            `real_interest`, 
+                            `real_intermediaryfee`, 
+                            `real_advance_penaltyfee`, 
+                            `overdue_day`, 
+                            `overdue_money`, 
+                            `is_advance`, 
+                            `status`, 
+                            `loop_time`, 
+                            `created_time`, 
+                            `remark`          </sql>
+ 
+  <select id="query" resultMap="repaymentPlansResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from  repayment_plans
+  </select>
+  
+	 
+	<insert id="insert" parameterType="com.yb.loan.pojo.RepaymentPlans">
+		insert into repayment_plans
+		(
+			`repayment_sq`, 
+			`loan_id`, 
+			`loan_no`, 
+			`contract_no`, 
+			`product_type`, 
+			`repay_userid`, 
+			`plan_no`, 
+			`repay_time`, 
+			`repay_holidaytime`, 
+			`repay_totalmoney`, 
+			`repay_money`, 
+			`repay_interest`, 
+			`repay_intermediaryfee`, 
+			`repay_advance_penaltyfee`, 
+			`remain_principal`, 
+			`remain_moneyinterest`, 
+			`advance_money`, 
+			`real_repay_time`, 
+			`real_moeny`, 
+			`real_interest`, 
+			`real_intermediaryfee`, 
+			`real_advance_penaltyfee`, 
+			`overdue_day`, 
+			`overdue_money`, 
+			`is_advance`, 
+			`status`, 
+			`loop_time`, 
+			`created_time`, 
+			`remark`
+		)
+		values
+		(
+			#{repaymentSq}, 
+			#{loanId}, 
+			#{loanNo}, 
+			#{contractNo}, 
+			#{productType}, 
+			#{repayUserid}, 
+			#{planNo}, 
+			#{repayTime}, 
+			#{repayHolidaytime}, 
+			#{repayTotalmoney}, 
+			#{repayMoney}, 
+			#{repayInterest}, 
+			#{repayIntermediaryfee}, 
+			#{repayAdvancePenaltyfee}, 
+			#{remainPrincipal}, 
+			#{remainMoneyinterest}, 
+			#{advanceMoney}, 
+			#{realRepayTime}, 
+			#{realMoeny}, 
+			#{realInterest}, 
+			#{realIntermediaryfee}, 
+			#{realAdvancePenaltyfee}, 
+			#{overdueDay}, 
+			#{overdueMoney}, 
+			#{isAdvance}, 
+			#{status}, 
+			#{loopTime}, 
+			#{createdTime}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.yb.loan.pojo.RepaymentPlans">
+		update repayment_plans 
+		<set>
+			<if test="loanId != null">`loan_id` = #{loanId}, </if>
+			<if test="loanNo != null">`loan_no` = #{loanNo}, </if>
+			<if test="contractNo != null">`contract_no` = #{contractNo}, </if>
+			<if test="productType != null">`product_type` = #{productType}, </if>
+			<if test="repayUserid != null">`repay_userid` = #{repayUserid}, </if>
+			<if test="planNo != null">`plan_no` = #{planNo}, </if>
+			<if test="repayTime != null">`repay_time` = #{repayTime}, </if>
+			<if test="repayHolidaytime != null">`repay_holidaytime` = #{repayHolidaytime}, </if>
+			<if test="repayTotalmoney != null">`repay_totalmoney` = #{repayTotalmoney}, </if>
+			<if test="repayMoney != null">`repay_money` = #{repayMoney}, </if>
+			<if test="repayInterest != null">`repay_interest` = #{repayInterest}, </if>
+			<if test="repayIntermediaryfee != null">`repay_intermediaryfee` = #{repayIntermediaryfee}, </if>
+			<if test="repayAdvancePenaltyfee != null">`repay_advance_penaltyfee` = #{repayAdvancePenaltyfee}, </if>
+			<if test="remainPrincipal != null">`remain_principal` = #{remainPrincipal}, </if>
+			<if test="remainMoneyinterest != null">`remain_moneyinterest` = #{remainMoneyinterest}, </if>
+			<if test="advanceMoney != null">`advance_money` = #{advanceMoney}, </if>
+			<if test="realRepayTime != null">`real_repay_time` = #{realRepayTime}, </if>
+			<if test="realMoeny != null">`real_moeny` = #{realMoeny}, </if>
+			<if test="realInterest != null">`real_interest` = #{realInterest}, </if>
+			<if test="realIntermediaryfee != null">`real_intermediaryfee` = #{realIntermediaryfee}, </if>
+			<if test="realAdvancePenaltyfee != null">`real_advance_penaltyfee` = #{realAdvancePenaltyfee}, </if>
+			<if test="overdueDay != null">`overdue_day` = #{overdueDay}, </if>
+			<if test="overdueMoney != null">`overdue_money` = #{overdueMoney}, </if>
+			<if test="isAdvance != null">`is_advance` = #{isAdvance}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="loopTime != null">`loop_time` = #{loopTime}, </if>
+			<if test="createdTime != null">`created_time` = #{createdTime}, </if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where repayment_sq = #{repaymentSq}
+	</update>
+
+</mapper>

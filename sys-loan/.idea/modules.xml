@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/sys-common/sys-common.iml" filepath="$PROJECT_DIR$/sys-common/sys-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sys-loan.iml" filepath="$PROJECT_DIR$/sys-loan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sys-third-service/sys-third-service.iml" filepath="$PROJECT_DIR$/sys-third-service/sys-third-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sys-web/sys-web.iml" filepath="$PROJECT_DIR$/sys-web/sys-web.iml" />
+    </modules>
+  </component>
+</project>

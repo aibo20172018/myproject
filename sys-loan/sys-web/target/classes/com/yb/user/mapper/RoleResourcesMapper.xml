@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.user.dao.RoleResourcesDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.user.pojo.RoleResources" id="roleResourcesResultMap">
+                <result property="roleId" column="role_id"/>
+              <result property="resourcesId" column="resources_id"/>
+          </resultMap>
+    
+  <sql id="Base_Column_List">
+                  `role_id`, 
+                            `resources_id`          </sql>
+ 
+  <select id="query" resultMap="roleResourcesResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from  sys_role_resources
+  </select>
+
+	<delete id="deleteRoleResources">
+		delete from sys_role_resources where role_id = #{roleId}
+	</delete>
+
+	<insert id="addRoleResources" parameterType="com.yb.user.pojo.RoleResources">
+		insert into sys_role_resources
+		(
+			`role_id`, 
+			`resources_id`
+		)
+		values
+		(
+			#{roleId}, 
+			#{resourcesId}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.yb.user.pojo.RoleResources">
+		update sys_role_resources 
+		<set>
+			<if test="resourcesId != null">`resources_id` = #{resourcesId}</if>
+		</set>
+		where role_id = #{roleId}
+	</update>
+
+</mapper>

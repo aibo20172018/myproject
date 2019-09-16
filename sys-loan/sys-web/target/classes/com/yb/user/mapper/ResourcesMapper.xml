@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.user.dao.ResourcesDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.user.pojo.Resources" id="resourcesResultMap">
+                <result property="id" column="id"/>
+              <result property="name" column="name"/>
+              <result property="url" column="url"/>
+              <result property="permission" column="permission"/>
+              <result property="pId" column="p_id"/>
+              <result property="sort" column="sort"/>
+              <result property="type" column="type"/>
+          </resultMap>
+
+	<select id="getResourceById" resultType="com.yb.user.pojo.Resources">
+		select id,name,p_id,url,permission,type,sort from sys_resources where id=#{id}
+	</select>
+	
+	<select id="listResource" resultMap="resourcesResultMap">
+		select id,name,p_id,url,permission,type,sort from sys_resources order by sort
+	</select>
+
+	<select id="queryUserPowerByUserId" resultMap="resourcesResultMap">
+		SELECT * FROM SYS_RESOURCES R WHERE R.TYPE ='1' AND R.ID IN(
+			SELECT RR.RESOURCES_ID FROM SYS_ROLE_RESOURCES RR WHERE RR.ROLE_ID IN(
+		SELECT A.ROLE_ID FROM SYS_USER_ROLE A WHERE A.USER_ID = #{userId} ))
+	</select>
+
+	<select id="listChildrenResourceById" resultMap="resourcesResultMap">
+		select id,name,p_id,url,permission,type,sort from sys_resources where p_id=#{id}
+	</select>
+
+  <select id="listResourceByUserName" resultMap="resourcesResultMap">
+   select id,`name`,type,url,permission,p_id from sys_resources where id in (
+		select resources_id from sys_role_resources where role_id in(
+	  		select role_id from sys_user_role where user_id in (select id from sys_user where user_name = #{userName})
+		)
+	)
+	<if test="type != null">
+		and type = #{type} order by sort desc
+	</if>
+  </select>
+
+	<select id="listResourceByRoleId" resultMap="resourcesResultMap">
+		select id,name,p_id from sys_resources where id in (select resources_id from sys_role_resources where role_id = #{roleId})
+	</select>
+  
+	 
+	<insert id="addResource" parameterType="com.yb.user.pojo.Resources">
+		insert into sys_resources
+		(
+			`id`, 
+			`name`, 
+			`url`, 
+			`permission`, 
+			`p_id`,
+			 sort,
+			 type
+		)
+		values
+		(
+			#{id}, 
+			#{name}, 
+			#{url}, 
+			#{permission}, 
+			#{pId},
+			#{sort},
+			#{type}
+		)
+	</insert>
+	 
+	<update id="updateResource" parameterType="com.yb.user.pojo.Resources">
+		update sys_resources 
+		<set>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="url != null">`url` = #{url}, </if>
+			<if test="permission != null">`permission` = #{permission}, </if>
+			<if test="sort != null">`sort` = #{sort}, </if>
+			<if test="type != null">`type` = #{type} </if>
+
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="deleteResource">
+		delete from sys_resources where id = #{resourceId}
+	</delete>
+
+</mapper>

@@ -1,0 +1,51 @@
+<configuration  scan="true" scanPeriod="60 seconds" debug="false" >
+    <contextName>oft-paygate</contextName>
+    <property name="LOG_PATH" value="/data/logs/tomcat/loan" />
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <file>${LOG_PATH}/default.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/default.%d{yyyy-MM-dd}.%i.zip
+            </fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="org.springframework" level="INFO" />
+    <logger name="org.apache" level="ERROR" />
+    <logger name="org.hibernate" level="INFO" />
+    <logger name="org.mybatis.spring" level="ERROR" />
+    <logger name="httpclient.wire.header" level="ERROR" />
+    <logger name="httpclient.wire.content" level="ERROR" />
+
+    <springProfile name="dev">
+        <logger name="com.yb" level="DEBUG" />
+        <root level="DEBUG">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+        </root>
+    </springProfile>
+
+    <springProfile name="test">
+        <logger name="com.yb" level="DEBUG" />
+        <root level="DEBUG">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <logger name="om.yb" level="INFO" />
+        <root level="INFO">
+            <appender-ref ref="FILE" />
+        </root>
+    </springProfile>
+
+</configuration>

@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.loan.dao.LoanInfoDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.loan.pojo.LoanInfo" id="loanInfoResultMap">
+		<result property="loanId" column="loan_id"/>
+		<result property="loanNo" column="loan_no"/>
+		<result property="newDate" column="new_date"/>
+		<result property="companyName" column="company_name"/>
+		<result property="legalerName" column="legaler_name"/>
+		<result property="creditCode" column="credit_code"/>
+		<result property="companyProvince" column="company_province"/>
+		<result property="companyCity" column="company_city"/>
+		<result property="companyAddress" column="company_address"/>
+		<result property="controllName" column="controll_name"/>
+		<result property="gender" column="gender"/>
+		<result property="marital" column="marital"/>
+		<result property="education" column="education"/>
+		<result property="mobile" column="mobile"/>
+		<result property="mail" column="mail"/>
+		<result property="idCard" column="id_card"/>
+		<result property="beginCardperiod" column="begin_cardperiod"/>
+		<result property="endCardperiod" column="end_cardperiod"/>
+		<result property="houseProvince" column="house_province"/>
+		<result property="houseCity" column="house_city"/>
+		<result property="bookletArea" column="booklet_area"/>
+		<result property="houseArea" column="house_area"/>
+		<result property="familyName" column="family_name"/>
+		<result property="relation" column="relation"/>
+		<result property="familyMobile" column="family_mobile"/>
+		<result property="coreCompany" column="core_company"/>
+		<result property="sellArea" column="sell_area"/>
+		<result property="sellName" column="sell_name"/>
+		<result property="businessType" column="business_type"/>
+		<result property="businessNo" column="business_no"/>
+		<result property="thisGrade" column="this_grade"/>
+		<result property="cooperateYear" column="cooperate_year"/>
+		<result property="upGrade" column="up_grade"/>
+		<result property="upContractMoney" column="up_contract_money"/>
+		<result property="downCooperateNum" column="down_cooperate_num"/>
+		<result property="upCoreCompanyMoney" column="up_core_company_money"/>
+		<result property="cooperateProduct" column="cooperate_product"/>
+		<result property="balanceWay" column="balance_way"/>
+		<result property="creditMoney" column="credit_money"/>
+		<result property="period" column="period"/>
+		<result property="loanPurposeUse" column="loan_purpose_use"/>
+		<result property="acctNo" column="acct_no"/>
+		<result property="bankName" column="bank_name"/>
+		<result property="bankSubname" column="bank_subname"/>
+		<result property="lendingName" column="lending_name"/>
+		<result property="staffNum" column="staff_num"/>
+		<result property="tradeYear" column="trade_year"/>
+		<result property="premises" column="premises"/>
+		<result property="premisesYear" column="premises_year"/>
+		<result property="isCar" column="is_car"/>
+		<result property="carNum" column="car_num"/>
+		<result property="isWarehouse" column="is_warehouse"/>
+		<result property="warehouseNum" column="warehouse_num"/>
+		<result property="warehouseAddress" column="warehouse_address"/>
+		<result property="childrenNum" column="children_num"/>
+		<result property="houseNum" column="house_num"/>
+		<result property="houseAddress" column="house_address"/>
+		<result property="houseType" column="house_type"/>
+		<result property="mortgageType" column="mortgage_type"/>
+		<result property="contractPeriod" column="contract_period"/>
+		<result property="monthlyRent" column="monthly_rent"/>
+		<result property="stateOperation" column="state_operation"/>
+		<result property="isRunbusiness" column="is_runbusiness"/>
+		<result property="otherTurnover" column="other_turnover"/>
+		<result property="remark" column="remark"/>
+		<result property="creditStanding" column="credit_standing"/>
+		<result property="loanMoney" column="loan_money"/>
+		<result property="adviseMoney" column="advise_money"/>
+		<result property="advisePeriod" column="advise_period"/>
+		<result property="loadRate" column="load_rate"/>
+		<result property="repayType" column="repay_type"/>
+		<result property="reviewTime" column="review_time"/>
+		<result property="reviewId" column="review_id"/>
+		<result property="reviewOfficer" column="review_officer"/>
+		<result property="status" column="status"/>
+		<result property="refusalRemark" column="refusal_remark"/>
+		<result property="fieldSurveyRemark" column="field_survey_remark"/>
+		<result property="upDealerGrade" column="up_dealer_grade"/>
+		<result property="currentDealerGrade" column="current_dealer_grade"/>
+		<result property="riskRemark" column="risk_remark"/>
+		<result property="examResult" column="exam_result"/>
+		<result property="examRemark" column="exam_remark"/>
+		<result property="examMoney" column="exam_money"/>
+		<result property="examPeriod" column="exam_period"/>
+		<result property="examRate" column="exam_rate"/>
+		<result property="examRepayType" column="exam_repay_type"/>
+		<result property="examConditions" column="exam_conditions"/>
+		<result property="examRefuse" column="exam_refuse"/>
+		<result property="examSonRefuse" column="exam_son_refuse"/>
+		<result property="reviewRefuse" column="review_refuse"/>
+		<result property="reviewSonRefuse" column="review_son_refuse"/>
+		<result property="supplyId" column="supply_id"/>
+		<result property="supplyTime" column="supply_time"/>
+		<result property="trialId" column="trial_id"/>
+		<result property="trialTime" column="trial_time"/>
+		<result property="recheckId" column="recheck_id"/>
+		<result property="recheckTime" column="recheck_time"/>
+		<result property="createTime" column="create_time"/>
+          </resultMap>
+
+	<resultMap id="FirstTrialLoanMap" type="com.yb.loan.pojo.vo.FirstTrialLoanVo">
+		<result property="loanNo" column="loan_no"/>
+		<result property="companyName" column="company_name"/>
+		<result property="controllName" column="controll_name"/>
+		<result property="mobile" column="mobile"/>
+		<result property="sellName" column="sell_name"/>
+		<result property="creditMoney" column="credit_money"/>
+		<result property="period" column="period"/>
+		<result property="createTime" column="create_time"/>
+		<result property="status" column="status"/>
+		<result property="remark" column="remark"/>
+	</resultMap>
+
+	<resultMap id="InspectLoanVoMap" type="com.yb.loan.pojo.vo.InspectLoanVo" extends="FirstTrialLoanMap">
+		<result property="reviewId" column="review_id"/>
+		<result property="reviewOfficer" column="review_officer"/>
+	</resultMap>
+	<resultMap id="RiskFirstTrialLoanVoMap" type="com.yb.loan.pojo.vo.RiskFirstTrialLoanVo" extends="InspectLoanVoMap">
+		<result property="creditLevel" column="credit_level"/>
+	</resultMap>
+	<resultMap id="RiskReviewLoanVoMap" type="com.yb.loan.pojo.vo.RiskReviewLoanVo" extends="RiskFirstTrialLoanVoMap">
+		<result property="adviseMoney" column="advise_money"/>
+		<result property="advisePeriod" column="advise_period"/>
+	</resultMap>
+
+	<select id="queryObject" resultType="com.yb.loan.pojo.LoanInfo">
+		select * from loan_info where loan_no = #{loanId}
+	</select>
+
+  <select id="listPageFirstTrialLoan" resultMap="FirstTrialLoanMap" parameterType="com.yb.loan.pojo.vo.FirstTrialLoanVo">
+   	select loan_no,company_name,controll_name,mobile,sell_name,credit_money,period,create_time,`status`,remark
+	from loan_info where `status` in('1','4')
+		<if test="loanInfo.companyName != null and loanInfo.companyName != ''"> and company_name = #{loanInfo.companyName}</if>
+		<if test="loanInfo.controllName != null and loanInfo.controllName != ''"> and controll_name = #{loanInfo.controllName}</if>
+		<if test="loanInfo.sellName != null and loanInfo.sellName != ''"> and sell_name = #{loanInfo.sellName}</if>
+		<if test="loanInfo.status != null and loanInfo.status != ''"> and status = #{loanInfo.status}</if>
+		<if test="loanInfo.startTime != null and loanInfo.startTime != ''"> and create_time &gt;= #{loanInfo.startTime}</if>
+		<if test="loanInfo.endTime != null and loanInfo.endTime != ''"> and create_time &lt;= #{loanInfo.endTime}</if>
+  </select>
+
+	<select id="listPageInspectLoan" resultMap="InspectLoanVoMap" parameterType="com.yb.loan.pojo.vo.InspectLoanVo">
+		select loan_no,company_name,controll_name,mobile,sell_name,credit_money,period,create_time,`status`,remark,review_id,review_officer
+		from loan_info where `status` = '6'
+		<if test="loanInfo.companyName != null and loanInfo.companyName != ''"> and company_name = #{loanInfo.companyName}</if>
+		<if test="loanInfo.controllName != null and loanInfo.controllName != ''"> and controll_name = #{loanInfo.controllName}</if>
+		<if test="loanInfo.sellName != null and loanInfo.sellName != ''"> and sell_name = #{loanInfo.sellName}</if>
+		<if test="loanInfo.status != null and loanInfo.status != ''"> and status = #{loanInfo.status}</if>
+		<if test="loanInfo.startTime != null and loanInfo.startTime != ''"> and create_time &gt;= #{loanInfo.startTime}</if>
+		<if test="loanInfo.endTime != null and loanInfo.endTime != ''"> and create_time &lt;= #{loanInfo.endTime}</if>
+	</select>
+
+	<select id="listPageRiskFirstTrialLoanVo" resultMap="RiskFirstTrialLoanVoMap" parameterType="com.yb.loan.pojo.vo.RiskFirstTrialLoanVo">
+		select loan_no,company_name,controll_name,mobile,sell_name,credit_money,period,create_time,`status`,remark,review_id,review_officer
+		from loan_info where `status` = '8'
+		<if test="loanInfo.companyName != null and loanInfo.companyName != ''"> and company_name = #{loanInfo.companyName}</if>
+		<if test="loanInfo.controllName != null and loanInfo.controllName != ''"> and controll_name = #{loanInfo.controllName}</if>
+		<if test="loanInfo.sellName != null and loanInfo.sellName != ''"> and sell_name = #{loanInfo.sellName}</if>
+		<if test="loanInfo.status != null and loanInfo.status != ''"> and status = #{loanInfo.status}</if>
+		<if test="loanInfo.startTime != null and loanInfo.startTime != ''"> and create_time &gt;= #{loanInfo.startTime}</if>
+		<if test="loanInfo.endTime != null and loanInfo.endTime != ''"> and create_time &lt;= #{loanInfo.endTime}</if>
+	</select>
+
+	<select id="listPageRiskReviewLoanVo" resultMap="RiskReviewLoanVoMap" parameterType="com.yb.loan.pojo.vo.RiskReviewLoanVo">
+		select loan_no,company_name,controll_name,mobile,sell_name,credit_money,period,create_time,`status`,remark,review_id,review_officer
+		from loan_info where `status` = '12'
+		<if test="loanInfo.companyName != null and loanInfo.companyName != ''"> and company_name = #{loanInfo.companyName}</if>
+		<if test="loanInfo.controllName != null and loanInfo.controllName != ''"> and controll_name = #{loanInfo.controllName}</if>
+		<if test="loanInfo.sellName != null and loanInfo.sellName != ''"> and sell_name = #{loanInfo.sellName}</if>
+		<if test="loanInfo.status != null and loanInfo.status != ''"> and status = #{loanInfo.status}</if>
+		<if test="loanInfo.startTime != null and loanInfo.startTime != ''"> and create_time &gt;= #{loanInfo.startTime}</if>
+		<if test="loanInfo.endTime != null and loanInfo.endTime != ''"> and create_time &lt;= #{loanInfo.endTime}</if>
+	</select>
+  
+	<insert id="insertLoanInfo" parameterType="com.yb.loan.pojo.LoanInfo">
+		insert into loan_info(loan_no,new_date,create_time, controll_name,company_name,sell_name,sell_area,mobile)
+			values(#{loanNo},#{newDate},#{createTime},#{controllName},#{companyName},#{sellName},#{sellArea},#{mobile})
+	</insert>
+
+
+	<insert id="insert" parameterType="com.yb.loan.pojo.LoanInfo">
+		insert into loan_info
+		(
+			`loan_no`,
+			`new_date`,
+			`company_name`,
+			`legaler_name`,
+			`credit_code`,
+			`company_province`,
+			`company_city`,
+			`company_address`,
+			`controll_name`,
+			`gender`,
+			`marital`,
+			`education`,
+			`mobile`,
+			`mail`,
+			`id_card`,
+			`begin_cardperiod`,
+			`end_cardperiod`,
+			`house_province`,
+			`house_city`,
+			`booklet_area`,
+			`house_area`,
+			`family_name`,
+			`relation`,
+			`family_mobile`,
+			`core_company`,
+			`sell_area`,
+			`sell_name`,
+			`business_type`,
+			`business_no`,
+			`this_grade`,
+			`cooperate_year`,
+			`up_grade`,
+			`up_contract_money`,
+			`down_cooperate_num`,
+			`up_core_company_money`,
+			`cooperate_product`,
+			`balance_way`,
+			`credit_money`,
+			`period`,
+			`loan_purpose_use`,
+			`acct_no`,
+			`bank_name`,
+			`bank_subname`,
+			`lending_name`,
+			`staff_num`,
+			`trade_year`,
+			`premises`,
+			`premises_year`,
+			`is_car`,
+			`car_num`,
+			`is_warehouse`,
+			`warehouse_num`,
+			`warehouse_address`,
+			`children_num`,
+			`house_num`,
+			`house_address`,
+			`house_type`,
+			`mortgage_type`,
+			`contract_period`,
+			`monthly_rent`,
+			`state_operation`,
+			`is_runbusiness`,
+			`other_turnover`,
+			`remark`,
+			`credit_standing`,
+			`loan_money`,
+			`advise_money`,
+			`advise_period`,
+			`load_rate`,
+			`repay_type`,
+			`review_time`,
+			`review_id`,
+			`review_officer`,
+			`status`,
+			`refusal_remark`,
+			`field_survey_remark`,
+			`up_dealer_grade`,
+			`current_dealer_grade`,
+			`risk_remark`,
+			`exam_result`,
+			`exam_remark`,
+			`exam_money`,
+			`exam_period`,
+			`exam_rate`,
+			`exam_repay_type`,
+			`exam_conditions`,
+			`exam_refuse`,
+			`exam_son_refuse`,
+			`review_refuse`,
+			`review_son_refuse`,
+			`supply_id`,
+			`supply_time`,
+			`trial_id`,
+			`trial_time`,
+			`recheck_id`,
+			`recheck_time`,
+			`create_time`
+		)
+		values
+		(
+			#{loanNo},
+			#{newDate},
+			#{companyName},
+			#{legalerName},
+			#{creditCode},
+			#{companyProvince},
+			#{companyCity},
+			#{companyAddress},
+			#{controllName},
+			#{gender},
+			#{marital},
+			#{education},
+			#{mobile},
+			#{mail},
+			#{idCard},
+			#{beginCardperiod},
+			#{endCardperiod},
+			#{houseProvince},
+			#{houseCity},
+			#{bookletArea},
+			#{houseArea},
+			#{familyName},
+			#{relation},
+			#{familyMobile},
+			#{coreCompany},
+			#{sellArea},
+			#{sellName},
+			#{businessType},
+			#{businessNo},
+			#{thisGrade},
+			#{cooperateYear},
+			#{upGrade},
+			#{upContractMoney},
+			#{downCooperateNum},
+			#{upCoreCompanyMoney},
+			#{cooperateProduct},
+			#{balanceWay},
+			#{creditMoney},
+			#{period},
+			#{loanPurposeUse},
+			#{acctNo},
+			#{bankName},
+			#{bankSubname},
+			#{lendingName},
+			#{staffNum},
+			#{tradeYear},
+			#{premises},
+			#{premisesYear},
+			#{isCar},
+			#{carNum},
+			#{isWarehouse},
+			#{warehouseNum},
+			#{warehouseAddress},
+			#{childrenNum},
+			#{houseNum},
+			#{houseAddress},
+			#{houseType},
+			#{mortgageType},
+			#{contractPeriod},
+			#{monthlyRent},
+			#{stateOperation},
+			#{isRunbusiness},
+			#{otherTurnover},
+			#{remark},
+			#{creditStanding},
+			#{loanMoney},
+			#{adviseMoney},
+			#{advisePeriod},
+			#{loadRate},
+			#{repayType},
+			#{reviewTime},
+			#{reviewId},
+			#{reviewOfficer},
+			#{status},
+			#{refusalRemark},
+			#{fieldSurveyRemark},
+			#{upDealerGrade},
+			#{currentDealerGrade},
+			#{riskRemark},
+			#{examResult},
+			#{examRemark},
+			#{examMoney},
+			#{examPeriod},
+			#{examRate},
+			#{examRepayType},
+			#{examConditions},
+			#{examRefuse},
+			#{examSonRefuse},
+			#{reviewRefuse},
+			#{reviewSonRefuse},
+			#{supplyId},
+			#{supplyTime},
+			#{trialId},
+			#{trialTime},
+			#{recheckId},
+			#{recheckTime},
+			#{createTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.yb.loan.pojo.LoanInfo">
+		update loan_info
+		<set>
+			<if test="loanNo != null">`loan_no` = #{loanNo}, </if>
+			<if test="newDate != null">`new_date` = #{newDate}, </if>
+			<if test="companyName != null">`company_name` = #{companyName}, </if>
+			<if test="legalerName != null">`legaler_name` = #{legalerName}, </if>
+			<if test="creditCode != null">`credit_code` = #{creditCode}, </if>
+			<if test="companyProvince != null">`company_province` = #{companyProvince}, </if>
+			<if test="companyCity != null">`company_city` = #{companyCity}, </if>
+			<if test="companyAddress != null">`company_address` = #{companyAddress}, </if>
+			<if test="controllName != null">`controll_name` = #{controllName}, </if>
+			<if test="gender != null">`gender` = #{gender}, </if>
+			<if test="marital != null">`marital` = #{marital}, </if>
+			<if test="education != null">`education` = #{education}, </if>
+			<if test="mobile != null">`mobile` = #{mobile}, </if>
+			<if test="mail != null">`mail` = #{mail}, </if>
+			<if test="idCard != null">`id_card` = #{idCard}, </if>
+			<if test="beginCardperiod != null">`begin_cardperiod` = #{beginCardperiod}, </if>
+			<if test="endCardperiod != null">`end_cardperiod` = #{endCardperiod}, </if>
+			<if test="houseProvince != null">`house_province` = #{houseProvince}, </if>
+			<if test="houseCity != null">`house_city` = #{houseCity}, </if>
+			<if test="bookletArea != null">`booklet_area` = #{bookletArea}, </if>
+			<if test="houseArea != null">`house_area` = #{houseArea}, </if>
+			<if test="familyName != null">`family_name` = #{familyName}, </if>
+			<if test="relation != null">`relation` = #{relation}, </if>
+			<if test="familyMobile != null">`family_mobile` = #{familyMobile}, </if>
+			<if test="coreCompany != null">`core_company` = #{coreCompany}, </if>
+			<if test="sellArea != null">`sell_area` = #{sellArea}, </if>
+			<if test="sellName != null">`sell_name` = #{sellName}, </if>
+			<if test="businessType != null">`business_type` = #{businessType}, </if>
+			<if test="businessNo != null">`business_no` = #{businessNo}, </if>
+			<if test="thisGrade != null">`this_grade` = #{thisGrade}, </if>
+			<if test="cooperateYear != null">`cooperate_year` = #{cooperateYear}, </if>
+			<if test="upGrade != null">`up_grade` = #{upGrade}, </if>
+			<if test="upContractMoney != null">`up_contract_money` = #{upContractMoney}, </if>
+			<if test="downCooperateNum != null">`down_cooperate_num` = #{downCooperateNum}, </if>
+			<if test="upCoreCompanyMoney != null">`up_core_company_money` = #{upCoreCompanyMoney}, </if>
+			<if test="cooperateProduct != null">`cooperate_product` = #{cooperateProduct}, </if>
+			<if test="balanceWay != null">`balance_way` = #{balanceWay}, </if>
+			<if test="creditMoney != null">`credit_money` = #{creditMoney}, </if>
+			<if test="period != null">`period` = #{period}, </if>
+			<if test="loanPurposeUse != null">`loan_purpose_use` = #{loanPurposeUse}, </if>
+			<if test="acctNo != null">`acct_no` = #{acctNo}, </if>
+			<if test="bankName != null">`bank_name` = #{bankName}, </if>
+			<if test="bankSubname != null">`bank_subname` = #{bankSubname}, </if>
+			<if test="lendingName != null">`lending_name` = #{lendingName}, </if>
+			<if test="staffNum != null">`staff_num` = #{staffNum}, </if>
+			<if test="tradeYear != null">`trade_year` = #{tradeYear}, </if>
+			<if test="premises != null">`premises` = #{premises}, </if>
+			<if test="premisesYear != null">`premises_year` = #{premisesYear}, </if>
+			<if test="isCar != null">`is_car` = #{isCar}, </if>
+			<if test="carNum != null">`car_num` = #{carNum}, </if>
+			<if test="isWarehouse != null">`is_warehouse` = #{isWarehouse}, </if>
+			<if test="warehouseNum != null">`warehouse_num` = #{warehouseNum}, </if>
+			<if test="warehouseAddress != null">`warehouse_address` = #{warehouseAddress}, </if>
+			<if test="childrenNum != null">`children_num` = #{childrenNum}, </if>
+			<if test="houseNum != null">`house_num` = #{houseNum}, </if>
+			<if test="houseAddress != null">`house_address` = #{houseAddress}, </if>
+			<if test="houseType != null">`house_type` = #{houseType}, </if>
+			<if test="mortgageType != null">`mortgage_type` = #{mortgageType}, </if>
+			<if test="contractPeriod != null">`contract_period` = #{contractPeriod}, </if>
+			<if test="monthlyRent != null">`monthly_rent` = #{monthlyRent}, </if>
+			<if test="stateOperation != null">`state_operation` = #{stateOperation}, </if>
+			<if test="isRunbusiness != null">`is_runbusiness` = #{isRunbusiness}, </if>
+			<if test="otherTurnover != null">`other_turnover` = #{otherTurnover}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="creditStanding != null">`credit_standing` = #{creditStanding}, </if>
+			<if test="loanMoney != null">`loan_money` = #{loanMoney}, </if>
+			<if test="adviseMoney != null">`advise_money` = #{adviseMoney}, </if>
+			<if test="advisePeriod != null">`advise_period` = #{advisePeriod}, </if>
+			<if test="loadRate != null">`load_rate` = #{loadRate}, </if>
+			<if test="repayType != null">`repay_type` = #{repayType}, </if>
+			<if test="reviewTime != null">`review_time` = #{reviewTime}, </if>
+			<if test="reviewId != null">`review_id` = #{reviewId}, </if>
+			<if test="reviewOfficer != null">`review_officer` = #{reviewOfficer}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="refusalRemark != null">`refusal_remark` = #{refusalRemark}, </if>
+			<if test="fieldSurveyRemark != null">`field_survey_remark` = #{fieldSurveyRemark}, </if>
+			<if test="upDealerGrade != null">`up_dealer_grade` = #{upDealerGrade}, </if>
+			<if test="currentDealerGrade != null">`current_dealer_grade` = #{currentDealerGrade}, </if>
+			<if test="riskRemark != null">`risk_remark` = #{riskRemark}, </if>
+			<if test="examResult != null">`exam_result` = #{examResult}, </if>
+			<if test="examRemark != null">`exam_remark` = #{examRemark}, </if>
+			<if test="examMoney != null">`exam_money` = #{examMoney}, </if>
+			<if test="examPeriod != null">`exam_period` = #{examPeriod}, </if>
+			<if test="examRate != null">`exam_rate` = #{examRate}, </if>
+			<if test="examRepayType != null">`exam_repay_type` = #{examRepayType}, </if>
+			<if test="examConditions != null">`exam_conditions` = #{examConditions}, </if>
+			<if test="examRefuse != null">`exam_refuse` = #{examRefuse}, </if>
+			<if test="examSonRefuse != null">`exam_son_refuse` = #{examSonRefuse}, </if>
+			<if test="reviewRefuse != null">`review_refuse` = #{reviewRefuse}, </if>
+			<if test="reviewSonRefuse != null">`review_son_refuse` = #{reviewSonRefuse}, </if>
+			<if test="supplyId != null">`supply_id` = #{supplyId}, </if>
+			<if test="supplyTime != null">`supply_time` = #{supplyTime}, </if>
+			<if test="trialId != null">`trial_id` = #{trialId}, </if>
+			<if test="trialTime != null">`trial_time` = #{trialTime}, </if>
+			<if test="recheckId != null">`recheck_id` = #{recheckId}, </if>
+			<if test="recheckTime != null">`recheck_time` = #{recheckTime}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}</if>
+		</set>
+		where loan_id = #{loanId}
+	</update>
+
+</mapper>

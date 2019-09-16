@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.department.dao.SysDepRoleDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.department.pojo.SysDepRole" id="sysDepRoleResultMap">
+                <result property="roleId" column="role_id"/>
+              <result property="depId" column="dep_id"/>
+          </resultMap>
+    
+  <sql id="Base_Column_List">
+                  `role_id`, 
+                            `dep_id`          </sql>
+ 
+  <select id="query" resultMap="sysDepRoleResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from  sys_dep_role
+  </select>
+  
+	 
+	<insert id="insert" parameterType="com.yb.department.pojo.SysDepRole">
+		insert into sys_dep_role
+		(
+			`role_id`, 
+			`dep_id`
+		)
+		values
+		(
+			#{roleId}, 
+			#{depId}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.yb.department.pojo.SysDepRole">
+		update sys_dep_role 
+		<set>
+			<if test="depId != null">`dep_id` = #{depId}</if>
+		</set>
+		where role_id = #{roleId}
+	</update>
+
+</mapper>

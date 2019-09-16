@@ -1,0 +1,9 @@
+server:
+  servlet:
+    context-path:
+spring:
+  profiles:
+    active: dev
+
+login.limitCount: 3
+login.interceptor.enable: true

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.loan.dao.LoansCoreDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.loan.pojo.LoansCore" id="loansCoreResultMap">
+		<result property="loanId" column="loan_id"/>
+		<result property="loanNo" column="loan_no"/>
+		<result property="productType" column="product_type"/>
+		<result property="approvalAmount" column="approval_amount"/>
+		<result property="approvalPeriod" column="approval_period"/>
+		<result property="interestRate" column="interest_rate"/>
+		<result property="repayType" column="repay_type"/>
+		<result property="approvalTime" column="approval_time"/>
+		<result property="approvalConditions" column="approval_conditions"/>
+		<result property="approvalRemark" column="approval_remark"/>
+		<result property="bankAmount" column="bank_amount"/>
+		<result property="bankPeriod" column="bank_period"/>
+		<result property="bankRate" column="bank_rate"/>
+		<result property="bankRepayType" column="bank_repay_type"/>
+		<result property="bankApprovalTime" column="bank_approval_time"/>
+		<result property="bankLoanTime" column="bank_loan_time"/>
+		<result property="pushTime" column="push_time"/>
+		<result property="interestTime" column="interest_time"/>
+		<result property="repayStartTime" column="repay_start_time"/>
+		<result property="repayLastTime" column="repay_last_time"/>
+		<result property="advancePeriod" column="advance_period"/>
+		<result property="realRepayEndTime" column="real_repay_end_time"/>
+		<result property="companyNo" column="company_no"/>
+		<result property="acctNo" column="acct_no"/>
+		<result property="bankName" column="bank_name"/>
+		<result property="bankSubname" column="bank_subname"/>
+		<result property="lendingName" column="lending_name"/>
+		<result property="rateIntermediaryfee" column="rate_intermediaryfee"/>
+		<result property="realIntermediaryfee" column="real_intermediaryfee"/>
+		<result property="rateIntermediaryfee2" column="rate_intermediaryfee2"/>
+		<result property="realIntermediaryfee2" column="real_intermediaryfee2"/>
+		<result property="repayChannel" column="repay_channel"/>
+		<result property="status" column="status"/>
+		<result property="createTime" column="create_time"/>
+		<result property="remark" column="remark"/>
+		<result property="signId" column="sign_id"/>
+		<result property="signTime" column="sign_time"/>
+		<result property="signcheckId" column="signcheck_id"/>
+		<result property="signcheckTime" column="signcheck_time"/>
+		<result property="financeId" column="finance_id"/>
+		<result property="financeTime" column="finance_time"/>
+          </resultMap>
+    
+  <sql id="Base_Column_List">
+                  `loan_id`, 
+                            `loan_no`, 
+                            `product_type`, 
+                            `approval_amount`, 
+                            `approval_period`, 
+                            `interest_rate`, 
+                            `repay_type`, 
+                            `approval_time`, 
+                            `approval_conditions`, 
+                            `approval_remark`, 
+                            `bank_amount`, 
+                            `bank_period`, 
+                            `bank_rate`, 
+                            `bank_repay_type`, 
+                            `bank_approval_time`, 
+                            `bank_loan_time`, 
+                            `push_time`, 
+                            `interest_time`, 
+                            `repay_start_time`, 
+                            `repay_last_time`, 
+                            `advance_period`, 
+                            `real_repay_end_time`, 
+                            `company_no`, 
+                            `acct_no`, 
+                            `bank_name`, 
+                            `bank_subname`, 
+                            `lending_name`, 
+                            `rate_intermediaryfee`, 
+                            `real_intermediaryfee`, 
+                            `rate_intermediaryfee2`, 
+                            `real_intermediaryfee2`, 
+                            `repay_channel`, 
+                            `status`, 
+                            `create_time`, 
+                            `remark`,
+                            `sign_id`,
+                            `sign_time`,
+                            `signcheck_id`,
+                            `signcheck_time`,
+                            `finance_id`,
+                            `finance_time`          </sql>
+ 
+  <select id="query" resultMap="loansCoreResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from  loans_core
+  </select>
+  
+	 
+	<insert id="insert" parameterType="com.yb.loan.pojo.LoansCore">
+		insert into loans_core
+		(
+			`loan_id`, 
+			`loan_no`, 
+			`product_type`, 
+			`approval_amount`, 
+			`approval_period`, 
+			`interest_rate`, 
+			`repay_type`, 
+			`approval_time`, 
+			`approval_conditions`, 
+			`approval_remark`, 
+			`bank_amount`, 
+			`bank_period`, 
+			`bank_rate`, 
+			`bank_repay_type`, 
+			`bank_approval_time`, 
+			`bank_loan_time`, 
+			`push_time`, 
+			`interest_time`, 
+			`repay_start_time`, 
+			`repay_last_time`, 
+			`advance_period`, 
+			`real_repay_end_time`, 
+			`company_no`, 
+			`acct_no`, 
+			`bank_name`, 
+			`bank_subname`, 
+			`lending_name`, 
+			`rate_intermediaryfee`, 
+			`real_intermediaryfee`, 
+			`rate_intermediaryfee2`, 
+			`real_intermediaryfee2`, 
+			`repay_channel`, 
+			`status`, 
+			`create_time`, 
+			`remark`,
+			`sign_id`,
+			`sign_time`,
+			`signcheck_id`,
+			`signcheck_time`,
+			`finance_id`,
+			`finance_time`
+		)
+		values
+		(
+			#{loanId},
+			#{loanNo},
+			#{productType},
+			#{approvalAmount},
+			#{approvalPeriod},
+			#{interestRate},
+			#{repayType},
+			#{approvalTime},
+			#{approvalConditions},
+			#{approvalRemark},
+			#{bankAmount},
+			#{bankPeriod},
+			#{bankRate},
+			#{bankRepayType},
+			#{bankApprovalTime},
+			#{bankLoanTime},
+			#{pushTime},
+			#{interestTime},
+			#{repayStartTime},
+			#{repayLastTime},
+			#{advancePeriod},
+			#{realRepayEndTime},
+			#{companyNo},
+			#{acctNo},
+			#{bankName},
+			#{bankSubname},
+			#{lendingName},
+			#{rateIntermediaryfee},
+			#{realIntermediaryfee},
+			#{rateIntermediaryfee2},
+			#{realIntermediaryfee2},
+			#{repayChannel},
+			#{status},
+			#{createTime},
+			#{remark},
+			#{signId},
+			#{signTime},
+			#{signcheckId},
+			#{signcheckTime},
+			#{financeId},
+			#{financeTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.yb.loan.pojo.LoansCore">
+		update loans_core
+		<set>
+			<if test="loanNo != null">`loan_no` = #{loanNo}, </if>
+			<if test="productType != null">`product_type` = #{productType}, </if>
+			<if test="approvalAmount != null">`approval_amount` = #{approvalAmount}, </if>
+			<if test="approvalPeriod != null">`approval_period` = #{approvalPeriod}, </if>
+			<if test="interestRate != null">`interest_rate` = #{interestRate}, </if>
+			<if test="repayType != null">`repay_type` = #{repayType}, </if>
+			<if test="approvalTime != null">`approval_time` = #{approvalTime}, </if>
+			<if test="approvalConditions != null">`approval_conditions` = #{approvalConditions}, </if>
+			<if test="approvalRemark != null">`approval_remark` = #{approvalRemark}, </if>
+			<if test="bankAmount != null">`bank_amount` = #{bankAmount}, </if>
+			<if test="bankPeriod != null">`bank_period` = #{bankPeriod}, </if>
+			<if test="bankRate != null">`bank_rate` = #{bankRate}, </if>
+			<if test="bankRepayType != null">`bank_repay_type` = #{bankRepayType}, </if>
+			<if test="bankApprovalTime != null">`bank_approval_time` = #{bankApprovalTime}, </if>
+			<if test="bankLoanTime != null">`bank_loan_time` = #{bankLoanTime}, </if>
+			<if test="pushTime != null">`push_time` = #{pushTime}, </if>
+			<if test="interestTime != null">`interest_time` = #{interestTime}, </if>
+			<if test="repayStartTime != null">`repay_start_time` = #{repayStartTime}, </if>
+			<if test="repayLastTime != null">`repay_last_time` = #{repayLastTime}, </if>
+			<if test="advancePeriod != null">`advance_period` = #{advancePeriod}, </if>
+			<if test="realRepayEndTime != null">`real_repay_end_time` = #{realRepayEndTime}, </if>
+			<if test="companyNo != null">`company_no` = #{companyNo}, </if>
+			<if test="acctNo != null">`acct_no` = #{acctNo}, </if>
+			<if test="bankName != null">`bank_name` = #{bankName}, </if>
+			<if test="bankSubname != null">`bank_subname` = #{bankSubname}, </if>
+			<if test="lendingName != null">`lending_name` = #{lendingName}, </if>
+			<if test="rateIntermediaryfee != null">`rate_intermediaryfee` = #{rateIntermediaryfee}, </if>
+			<if test="realIntermediaryfee != null">`real_intermediaryfee` = #{realIntermediaryfee}, </if>
+			<if test="rateIntermediaryfee2 != null">`rate_intermediaryfee2` = #{rateIntermediaryfee2}, </if>
+			<if test="realIntermediaryfee2 != null">`real_intermediaryfee2` = #{realIntermediaryfee2}, </if>
+			<if test="repayChannel != null">`repay_channel` = #{repayChannel}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="signId != null">`sign_id` = #{signId}, </if>
+			<if test="signTime != null">`sign_time` = #{signTime}, </if>
+			<if test="signcheckId != null">`signcheck_id` = #{signcheckId}, </if>
+			<if test="signcheckTime != null">`signcheck_time` = #{signcheckTime}, </if>
+			<if test="financeId != null">`finance_id` = #{financeId}, </if>
+			<if test="financeTime != null">`finance_time` = #{financeTime}</if>
+		</set>
+		where loan_id = #{loanId}
+	</update>
+
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.department.dao.SysDepartmentDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.department.pojo.SysDepartment" id="sysDepartmentResultMap">
+                <result property="id" column="id"/>
+              <result property="depName" column="dep_name"/>
+          </resultMap>
+    
+  <sql id="Base_Column_List">
+                  `id`, 
+                            `dep_name`          </sql>
+ 
+  <select id="query" resultMap="sysDepartmentResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from  sys_department
+  </select>
+  
+	 
+	<insert id="insert" parameterType="com.yb.department.pojo.SysDepartment">
+		insert into sys_department
+		(
+			`id`, 
+			`dep_name`
+		)
+		values
+		(
+			#{id}, 
+			#{depName}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.yb.department.pojo.SysDepartment">
+		update sys_department 
+		<set>
+			<if test="depName != null">`dep_name` = #{depName}</if>
+		</set>
+		where id = #{id}
+	</update>
+
+</mapper>

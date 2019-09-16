@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.loan.dao.LoanCreditDataDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.loan.pojo.LoanCreditData" id="loanCreditDataResultMap">
+                <result property="loanId" column="loan_id"/>
+              <result property="comType" column="com_type"/>
+              <result property="subject" column="subject"/>
+              <result property="reportNum" column="report_num"/>
+              <result property="checkNum" column="check_num"/>
+              <result property="checkRemak" column="check_remak"/>
+              <result property="upyearMoney" column="upyear_money"/>
+              <result property="monthlyAve" column="monthly_ave"/>
+              <result property="remak" column="remak"/>
+              <result property="createTime" column="create_time"/>
+              <result property="remark" column="remark"/>
+          </resultMap>
+    
+  <sql id="Base_Column_List">
+                  `loan_id`, 
+                            `com_type`, 
+                            `subject`, 
+                            `report_num`, 
+                            `check_num`, 
+                            `check_remak`, 
+                            `upyear_money`, 
+                            `monthly_ave`, 
+                            `remak`, 
+                            `create_time`, 
+                            `remark`          </sql>
+ 
+  <select id="query" resultMap="loanCreditDataResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from  loan_credit_data
+  </select>
+  
+	 
+	<insert id="insert" parameterType="com.yb.loan.pojo.LoanCreditData">
+		insert into loan_credit_data
+		(
+			`loan_id`, 
+			`com_type`, 
+			`subject`, 
+			`report_num`, 
+			`check_num`, 
+			`check_remak`, 
+			`upyear_money`, 
+			`monthly_ave`, 
+			`remak`, 
+			`create_time`, 
+			`remark`
+		)
+		values
+		(
+			#{loanId}, 
+			#{comType}, 
+			#{subject}, 
+			#{reportNum}, 
+			#{checkNum}, 
+			#{checkRemak}, 
+			#{upyearMoney}, 
+			#{monthlyAve}, 
+			#{remak}, 
+			#{createTime}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.yb.loan.pojo.LoanCreditData">
+		update loan_credit_data 
+		<set>
+			<if test="comType != null">`com_type` = #{comType}, </if>
+			<if test="subject != null">`subject` = #{subject}, </if>
+			<if test="reportNum != null">`report_num` = #{reportNum}, </if>
+			<if test="checkNum != null">`check_num` = #{checkNum}, </if>
+			<if test="checkRemak != null">`check_remak` = #{checkRemak}, </if>
+			<if test="upyearMoney != null">`upyear_money` = #{upyearMoney}, </if>
+			<if test="monthlyAve != null">`monthly_ave` = #{monthlyAve}, </if>
+			<if test="remak != null">`remak` = #{remak}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where loan_id = #{loanId}
+	</update>
+
+</mapper>

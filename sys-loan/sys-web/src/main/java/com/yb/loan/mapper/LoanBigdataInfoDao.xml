@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.loan.dao.LoanBigdataInfoDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.loan.pojo.LoanBigdataInfo" id="loanBigdataInfoResultMap">
+                <result property="loanId" column="loan_id"/>
+              <result property="bigdataType" column="bigdata_type"/>
+              <result property="reportNo" column="report_no"/>
+              <result property="idcardQcellcore" column="idcard_qcellcore"/>
+              <result property="phoneQcellcore" column="phone_qcellcore"/>
+              <result property="bigdataRemark" column="bigdata_remark"/>
+              <result property="reportTime" column="report_time"/>
+              <result property="reportPath" column="report_path"/>
+              <result property="createTime" column="create_time"/>
+              <result property="remark" column="remark"/>
+          </resultMap>
+    
+  <sql id="Base_Column_List">
+                  `loan_id`, 
+                            `bigdata_type`, 
+                            `report_no`, 
+                            `idcard_qcellcore`, 
+                            `phone_qcellcore`, 
+                            `bigdata_remark`, 
+                            `report_time`, 
+                            `report_path`, 
+                            `create_time`, 
+                            `remark`          </sql>
+ 
+  <select id="query" resultMap="loanBigdataInfoResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from  loan_bigdata_info
+  </select>
+  
+	 
+	<insert id="insert" parameterType="com.yb.loan.pojo.LoanBigdataInfo">
+		insert into loan_bigdata_info
+		(
+			`loan_id`, 
+			`bigdata_type`, 
+			`report_no`, 
+			`idcard_qcellcore`, 
+			`phone_qcellcore`, 
+			`bigdata_remark`, 
+			`report_time`, 
+			`report_path`, 
+			`create_time`, 
+			`remark`
+		)
+		values
+		(
+			#{loanId}, 
+			#{bigdataType}, 
+			#{reportNo}, 
+			#{idcardQcellcore}, 
+			#{phoneQcellcore}, 
+			#{bigdataRemark}, 
+			#{reportTime}, 
+			#{reportPath}, 
+			#{createTime}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.yb.loan.pojo.LoanBigdataInfo">
+		update loan_bigdata_info 
+		<set>
+			<if test="bigdataType != null">`bigdata_type` = #{bigdataType}, </if>
+			<if test="reportNo != null">`report_no` = #{reportNo}, </if>
+			<if test="idcardQcellcore != null">`idcard_qcellcore` = #{idcardQcellcore}, </if>
+			<if test="phoneQcellcore != null">`phone_qcellcore` = #{phoneQcellcore}, </if>
+			<if test="bigdataRemark != null">`bigdata_remark` = #{bigdataRemark}, </if>
+			<if test="reportTime != null">`report_time` = #{reportTime}, </if>
+			<if test="reportPath != null">`report_path` = #{reportPath}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where loan_id = #{loanId}
+	</update>
+
+</mapper>

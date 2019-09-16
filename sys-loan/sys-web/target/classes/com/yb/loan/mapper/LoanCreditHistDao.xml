@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.loan.dao.LoanCreditHistDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.loan.pojo.LoanCreditHist" id="loanCreditHistResultMap">
+                <result property="loanId" column="loan_id"/>
+              <result property="reportType" column="report_type"/>
+              <result property="loanSrc" column="loan_src"/>
+              <result property="loanMoney" column="loan_money"/>
+              <result property="loanPeriod" column="loan_period"/>
+              <result property="loanPurpose" column="loan_purpose"/>
+              <result property="loanTime" column="loan_time"/>
+              <result property="dueTime" column="due_time"/>
+              <result property="repayMoney" column="repay_money"/>
+              <result property="loanBalance" column="loan_balance"/>
+              <result property="withinOverdue1" column="within_overdue1"/>
+              <result property="withinOverdue2" column="within_overdue2"/>
+              <result property="withinOverdue3" column="within_overdue3"/>
+              <result property="withinOverdue4" column="within_overdue4"/>
+              <result property="aboveOverdue5" column="above_overdue5"/>
+              <result property="loanTotalnum" column="loan_totalnum"/>
+              <result property="loanTotalmoney" column="loan_totalmoney"/>
+              <result property="loanTotalbalance" column="loan_totalbalance"/>
+              <result property="repayTotalmoney" column="repay_totalmoney"/>
+              <result property="overdueTotalnum" column="overdue_totalnum"/>
+              <result property="createTime" column="create_time"/>
+              <result property="remark" column="remark"/>
+          </resultMap>
+    
+  <sql id="Base_Column_List">
+                  `loan_id`, 
+                            `report_type`, 
+                            `loan_src`, 
+                            `loan_money`, 
+                            `loan_period`, 
+                            `loan_purpose`, 
+                            `loan_time`, 
+                            `due_time`, 
+                            `repay_money`, 
+                            `loan_balance`, 
+                            `within_overdue1`, 
+                            `within_overdue2`, 
+                            `within_overdue3`, 
+                            `within_overdue4`, 
+                            `above_overdue5`, 
+                            `loan_totalnum`, 
+                            `loan_totalmoney`, 
+                            `loan_totalbalance`, 
+                            `repay_totalmoney`, 
+                            `overdue_totalnum`, 
+                            `create_time`, 
+                            `remark`          </sql>
+ 
+  <select id="query" resultMap="loanCreditHistResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from  loan_credit_hist
+  </select>
+  
+	 
+	<insert id="insert" parameterType="com.yb.loan.pojo.LoanCreditHist">
+		insert into loan_credit_hist
+		(
+			`loan_id`, 
+			`report_type`, 
+			`loan_src`, 
+			`loan_money`, 
+			`loan_period`, 
+			`loan_purpose`, 
+			`loan_time`, 
+			`due_time`, 
+			`repay_money`, 
+			`loan_balance`, 
+			`within_overdue1`, 
+			`within_overdue2`, 
+			`within_overdue3`, 
+			`within_overdue4`, 
+			`above_overdue5`, 
+			`loan_totalnum`, 
+			`loan_totalmoney`, 
+			`loan_totalbalance`, 
+			`repay_totalmoney`, 
+			`overdue_totalnum`, 
+			`create_time`, 
+			`remark`
+		)
+		values
+		(
+			#{loanId}, 
+			#{reportType}, 
+			#{loanSrc}, 
+			#{loanMoney}, 
+			#{loanPeriod}, 
+			#{loanPurpose}, 
+			#{loanTime}, 
+			#{dueTime}, 
+			#{repayMoney}, 
+			#{loanBalance}, 
+			#{withinOverdue1}, 
+			#{withinOverdue2}, 
+			#{withinOverdue3}, 
+			#{withinOverdue4}, 
+			#{aboveOverdue5}, 
+			#{loanTotalnum}, 
+			#{loanTotalmoney}, 
+			#{loanTotalbalance}, 
+			#{repayTotalmoney}, 
+			#{overdueTotalnum}, 
+			#{createTime}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.yb.loan.pojo.LoanCreditHist">
+		update loan_credit_hist 
+		<set>
+			<if test="reportType != null">`report_type` = #{reportType}, </if>
+			<if test="loanSrc != null">`loan_src` = #{loanSrc}, </if>
+			<if test="loanMoney != null">`loan_money` = #{loanMoney}, </if>
+			<if test="loanPeriod != null">`loan_period` = #{loanPeriod}, </if>
+			<if test="loanPurpose != null">`loan_purpose` = #{loanPurpose}, </if>
+			<if test="loanTime != null">`loan_time` = #{loanTime}, </if>
+			<if test="dueTime != null">`due_time` = #{dueTime}, </if>
+			<if test="repayMoney != null">`repay_money` = #{repayMoney}, </if>
+			<if test="loanBalance != null">`loan_balance` = #{loanBalance}, </if>
+			<if test="withinOverdue1 != null">`within_overdue1` = #{withinOverdue1}, </if>
+			<if test="withinOverdue2 != null">`within_overdue2` = #{withinOverdue2}, </if>
+			<if test="withinOverdue3 != null">`within_overdue3` = #{withinOverdue3}, </if>
+			<if test="withinOverdue4 != null">`within_overdue4` = #{withinOverdue4}, </if>
+			<if test="aboveOverdue5 != null">`above_overdue5` = #{aboveOverdue5}, </if>
+			<if test="loanTotalnum != null">`loan_totalnum` = #{loanTotalnum}, </if>
+			<if test="loanTotalmoney != null">`loan_totalmoney` = #{loanTotalmoney}, </if>
+			<if test="loanTotalbalance != null">`loan_totalbalance` = #{loanTotalbalance}, </if>
+			<if test="repayTotalmoney != null">`repay_totalmoney` = #{repayTotalmoney}, </if>
+			<if test="overdueTotalnum != null">`overdue_totalnum` = #{overdueTotalnum}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where loan_id = #{loanId}
+	</update>
+
+</mapper>

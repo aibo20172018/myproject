@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.companyfund.dao.CompanyFundDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.companyfund.pojo.CompanyFund" id="companyFundResultMap">
+                <result property="companyNo" column="company_no"/>
+              <result property="companyName" column="company_name"/>
+              <result property="maxLoanAmount" column="max_loan_amount"/>
+              <result property="loanTotalamunt" column="loan_totalamunt"/>
+              <result property="loanWayAmunt" column="loan_way_amunt"/>
+              <result property="onoff" column="onoff"/>
+              <result property="remark" column="remark"/>
+              <result property="companyDesc" column="company_desc"/>
+          </resultMap>
+    
+  <sql id="Base_Column_List">
+                  `company_no`, 
+                            `company_name`, 
+                            `max_loan_amount`, 
+                            `loan_totalamunt`, 
+                            `loan_way_amunt`, 
+                            `onoff`, 
+                            `remark`, 
+                            `company_desc`          </sql>
+ 
+  <select id="query" resultMap="companyFundResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from  company_fund
+  </select>
+  
+	 
+	<insert id="insert" parameterType="com.yb.companyfund.pojo.CompanyFund">
+		insert into company_fund
+		(
+			`company_no`, 
+			`company_name`, 
+			`max_loan_amount`, 
+			`loan_totalamunt`, 
+			`loan_way_amunt`, 
+			`onoff`, 
+			`remark`, 
+			`company_desc`
+		)
+		values
+		(
+			#{companyNo}, 
+			#{companyName}, 
+			#{maxLoanAmount}, 
+			#{loanTotalamunt}, 
+			#{loanWayAmunt}, 
+			#{onoff}, 
+			#{remark}, 
+			#{companyDesc}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.yb.companyfund.pojo.CompanyFund">
+		update company_fund 
+		<set>
+			<if test="companyName != null">`company_name` = #{companyName}, </if>
+			<if test="maxLoanAmount != null">`max_loan_amount` = #{maxLoanAmount}, </if>
+			<if test="loanTotalamunt != null">`loan_totalamunt` = #{loanTotalamunt}, </if>
+			<if test="loanWayAmunt != null">`loan_way_amunt` = #{loanWayAmunt}, </if>
+			<if test="onoff != null">`onoff` = #{onoff}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="companyDesc != null">`company_desc` = #{companyDesc}</if>
+		</set>
+		where company_no = #{companyNo}
+	</update>
+
+</mapper>

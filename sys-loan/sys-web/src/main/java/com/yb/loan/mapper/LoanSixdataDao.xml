@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.loan.dao.LoanSixdataDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.loan.pojo.LoanSixdata" id="loanSixdataResultMap">
+                <result property="loanId" column="loan_id"/>
+              <result property="dataType" column="data_type"/>
+              <result property="dataTime1" column="data_time1"/>
+              <result property="dataMoney1" column="data_money1"/>
+              <result property="dataTime2" column="data_time2"/>
+              <result property="dataMoney2" column="data_money2"/>
+              <result property="dataTime3" column="data_time3"/>
+              <result property="dataMoney3" column="data_money3"/>
+              <result property="dataTime4" column="data_time4"/>
+              <result property="dataMoney4" column="data_money4"/>
+              <result property="dataTime5" column="data_time5"/>
+              <result property="dataMoney5" column="data_money5"/>
+              <result property="dataTime6" column="data_time6"/>
+              <result property="dataMoney6" column="data_money6"/>
+              <result property="createTime" column="create_time"/>
+              <result property="remark" column="remark"/>
+          </resultMap>
+    
+  <sql id="Base_Column_List">
+                  `loan_id`, 
+                            `data_type`, 
+                            `data_time1`, 
+                            `data_money1`, 
+                            `data_time2`, 
+                            `data_money2`, 
+                            `data_time3`, 
+                            `data_money3`, 
+                            `data_time4`, 
+                            `data_money4`, 
+                            `data_time5`, 
+                            `data_money5`, 
+                            `data_time6`, 
+                            `data_money6`, 
+                            `create_time`, 
+                            `remark`          </sql>
+ 
+  <select id="query" resultMap="loanSixdataResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from  loan_sixdata
+  </select>
+  
+	 
+	<insert id="insert" parameterType="com.yb.loan.pojo.LoanSixdata">
+		insert into loan_sixdata
+		(
+			`loan_id`, 
+			`data_type`, 
+			`data_time1`, 
+			`data_money1`, 
+			`data_time2`, 
+			`data_money2`, 
+			`data_time3`, 
+			`data_money3`, 
+			`data_time4`, 
+			`data_money4`, 
+			`data_time5`, 
+			`data_money5`, 
+			`data_time6`, 
+			`data_money6`, 
+			`create_time`, 
+			`remark`
+		)
+		values
+		(
+			#{loanId}, 
+			#{dataType}, 
+			#{dataTime1}, 
+			#{dataMoney1}, 
+			#{dataTime2}, 
+			#{dataMoney2}, 
+			#{dataTime3}, 
+			#{dataMoney3}, 
+			#{dataTime4}, 
+			#{dataMoney4}, 
+			#{dataTime5}, 
+			#{dataMoney5}, 
+			#{dataTime6}, 
+			#{dataMoney6}, 
+			#{createTime}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.yb.loan.pojo.LoanSixdata">
+		update loan_sixdata 
+		<set>
+			<if test="dataType != null">`data_type` = #{dataType}, </if>
+			<if test="dataTime1 != null">`data_time1` = #{dataTime1}, </if>
+			<if test="dataMoney1 != null">`data_money1` = #{dataMoney1}, </if>
+			<if test="dataTime2 != null">`data_time2` = #{dataTime2}, </if>
+			<if test="dataMoney2 != null">`data_money2` = #{dataMoney2}, </if>
+			<if test="dataTime3 != null">`data_time3` = #{dataTime3}, </if>
+			<if test="dataMoney3 != null">`data_money3` = #{dataMoney3}, </if>
+			<if test="dataTime4 != null">`data_time4` = #{dataTime4}, </if>
+			<if test="dataMoney4 != null">`data_money4` = #{dataMoney4}, </if>
+			<if test="dataTime5 != null">`data_time5` = #{dataTime5}, </if>
+			<if test="dataMoney5 != null">`data_money5` = #{dataMoney5}, </if>
+			<if test="dataTime6 != null">`data_time6` = #{dataTime6}, </if>
+			<if test="dataMoney6 != null">`data_money6` = #{dataMoney6}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where loan_id = #{loanId}
+	</update>
+
+</mapper>

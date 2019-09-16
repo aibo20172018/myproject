@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springboot.mappers.ProcessElementMapper" >
+  <resultMap id="BaseResultMap" type="com.example.springboot.entity.ProcessElement" >
+    <id column="c_id" property="cId" jdbcType="BIGINT" />
+    <result column="c_elcode" property="cElcode" jdbcType="VARCHAR" />
+    <result column="c_elname" property="cElname" jdbcType="VARCHAR" />
+    <result column="c_prevalue" property="cPrevalue" jdbcType="VARCHAR" />
+    <result column="c_datatype" property="cDatatype" jdbcType="VARCHAR" />
+    <result column="c_groupcode" property="cGroupcode" jdbcType="VARCHAR" />
+    <result column="c_templete" property="cTemplete" jdbcType="VARCHAR" />
+    <result column="c_lable" property="cLable" jdbcType="CHAR" />
+    <result column="c_sort" property="cSort" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    c_id, c_elcode, c_elname, c_prevalue, c_datatype, c_groupcode, c_templete, c_lable, 
+    c_sort, created_by, created_time, update_by, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_process_element
+    where c_id = #{cId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_process_element
+    where c_id = #{cId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.example.springboot.entity.ProcessElement" >
+    insert into t_process_element (c_id, c_elcode, c_elname, 
+      c_prevalue, c_datatype, c_groupcode, 
+      c_templete, c_lable, c_sort, 
+      created_by, created_time, update_by, 
+      update_time)
+    values (#{cId,jdbcType=BIGINT}, #{cElcode,jdbcType=VARCHAR}, #{cElname,jdbcType=VARCHAR}, 
+      #{cPrevalue,jdbcType=VARCHAR}, #{cDatatype,jdbcType=VARCHAR}, #{cGroupcode,jdbcType=VARCHAR}, 
+      #{cTemplete,jdbcType=VARCHAR}, #{cLable,jdbcType=CHAR}, #{cSort,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.springboot.entity.ProcessElement" >
+    insert into t_process_element
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="cElcode != null" >
+        c_elcode,
+      </if>
+      <if test="cElname != null" >
+        c_elname,
+      </if>
+      <if test="cPrevalue != null" >
+        c_prevalue,
+      </if>
+      <if test="cDatatype != null" >
+        c_datatype,
+      </if>
+      <if test="cGroupcode != null" >
+        c_groupcode,
+      </if>
+      <if test="cTemplete != null" >
+        c_templete,
+      </if>
+      <if test="cLable != null" >
+        c_lable,
+      </if>
+      <if test="cSort != null" >
+        c_sort,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cId != null" >
+        #{cId,jdbcType=BIGINT},
+      </if>
+      <if test="cElcode != null" >
+        #{cElcode,jdbcType=VARCHAR},
+      </if>
+      <if test="cElname != null" >
+        #{cElname,jdbcType=VARCHAR},
+      </if>
+      <if test="cPrevalue != null" >
+        #{cPrevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="cDatatype != null" >
+        #{cDatatype,jdbcType=VARCHAR},
+      </if>
+      <if test="cGroupcode != null" >
+        #{cGroupcode,jdbcType=VARCHAR},
+      </if>
+      <if test="cTemplete != null" >
+        #{cTemplete,jdbcType=VARCHAR},
+      </if>
+      <if test="cLable != null" >
+        #{cLable,jdbcType=CHAR},
+      </if>
+      <if test="cSort != null" >
+        #{cSort,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboot.entity.ProcessElement" >
+    update t_process_element
+    <set >
+      <if test="cElcode != null" >
+        c_elcode = #{cElcode,jdbcType=VARCHAR},
+      </if>
+      <if test="cElname != null" >
+        c_elname = #{cElname,jdbcType=VARCHAR},
+      </if>
+      <if test="cPrevalue != null" >
+        c_prevalue = #{cPrevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="cDatatype != null" >
+        c_datatype = #{cDatatype,jdbcType=VARCHAR},
+      </if>
+      <if test="cGroupcode != null" >
+        c_groupcode = #{cGroupcode,jdbcType=VARCHAR},
+      </if>
+      <if test="cTemplete != null" >
+        c_templete = #{cTemplete,jdbcType=VARCHAR},
+      </if>
+      <if test="cLable != null" >
+        c_lable = #{cLable,jdbcType=CHAR},
+      </if>
+      <if test="cSort != null" >
+        c_sort = #{cSort,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where c_id = #{cId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springboot.entity.ProcessElement" >
+    update t_process_element
+    set c_elcode = #{cElcode,jdbcType=VARCHAR},
+      c_elname = #{cElname,jdbcType=VARCHAR},
+      c_prevalue = #{cPrevalue,jdbcType=VARCHAR},
+      c_datatype = #{cDatatype,jdbcType=VARCHAR},
+      c_groupcode = #{cGroupcode,jdbcType=VARCHAR},
+      c_templete = #{cTemplete,jdbcType=VARCHAR},
+      c_lable = #{cLable,jdbcType=CHAR},
+      c_sort = #{cSort,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where c_id = #{cId,jdbcType=BIGINT}
+  </update>
+</mapper>

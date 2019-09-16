@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yb.user.dao.UserDao" >
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yb.user.pojo.User" id="userResultMap">
+                <result property="id" column="id"/>
+              <result property="userName" column="user_name"/>
+              <result property="passWord" column="pass_word"/>
+              <result property="createTime" column="create_time"/>
+              <result property="updateTime" column="update_time"/>
+              <result property="email" column="email"/>
+              <result property="lock" column="lock"/>
+              <result property="type" column="type"/>
+              <result property="phone" column="phone"/>
+          </resultMap>
+
+	<resultMap type="com.yb.user.pojo.vo.UserVo" id="userVoResultMap">
+		<result property="userId" column="id"/>
+		<result property="username" column="user_name"/>
+		<result property="email" column="email"/>
+		<result property="phone" column="phone"/>
+		<result property="roleId" column="rold_id"/>
+		<result property="updateTime" column="update_time"/>
+		<result property="createTime" column="create_time"/>
+
+	</resultMap>
+    
+  <sql id="Base_Column_List">
+                  `id`, 
+                            `user_name`,
+                            `pass_word`,
+                            `lock`,
+                            `create_time`, 
+                            `update_time`, 
+                            `email`, 
+                            `phone`         </sql>
+ 
+  <select id="queryUserByName" resultType="com.yb.user.pojo.User">
+    select
+      <include refid="Base_Column_List" />
+    from  sys_user where user_name = #{userName}
+  </select>
+
+    <select id="queryUserByID" resultType="com.yb.user.pojo.vo.UserVo">
+        select u.id,u.user_name,u.email,u.phone,r.role_id from sys_user u
+			left join sys_user_role r on r.user_id = u.id where u.id = #{userId}
+    </select>
+
+	<select id="listPageUser" resultMap="userVoResultMap">
+		select u.id, u.user_name, u.create_time, u.update_time, u.email, u.phone
+		from  sys_user u where 1 = 1
+		<if test="user.userName != null and user.userName !=''">
+			 and user_name like concat('%',#{user.userName},'%')
+		</if>
+		<if test="user.email != null and user.email !=''">
+			and email like concat('%',#{user.email},'%')
+		</if>
+		<if test="user.phone != null and user.phone != ''">
+			and phone like concat('%',#{user.phone},'%')
+		</if>
+	</select>
+  
+	 
+	<insert id="addUser" parameterType="com.yb.user.pojo.User" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_user
+		(
+			`user_name`,
+			`pass_word`, 
+			`create_time`, 
+			`update_time`, 
+			`type`,
+			`email`,
+			`phone`
+		)
+		values
+		(
+			#{userName},
+			#{passWord}, 
+			#{createTime}, 
+			#{updateTime}, 
+			#{type},
+			#{email},
+			#{phone}
+		)
+	</insert>
+	 
+	<update id="updateUser" parameterType="com.yb.user.pojo.User">
+		update sys_user 
+		<set>
+			<if test="userName != null">`user_name` = #{userName}, </if>
+			<if test="passWord != null">`pass_word` = #{passWord}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="email != null">`email` = #{email}, </if>
+			<if test="phone != null">`phone` = #{phone}</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<update id="updateUserLockStatus" parameterType="com.yb.user.pojo.User">
+		update sys_user
+		<set>
+			<if test="lock != null">`lock` = #{lock} </if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteUserById">
+		delete from sys_user where id = #{userId}
+	</delete>
+
+</mapper>
